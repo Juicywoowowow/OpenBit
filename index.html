@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenBit - Open Source Video Platform</title>
+    <link rel="stylesheet" href="src/styles/main.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-brand">
+                    <i class="fas fa-play-circle"></i>
+                    <span>OpenBit</span>
+                </div>
+                <div class="nav-search">
+                    <input type="text" id="searchInput" placeholder="Search videos...">
+                    <button id="searchBtn"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="nav-actions">
+                    <button id="uploadBtn" class="btn-primary">
+                        <i class="fas fa-upload"></i> Upload
+                    </button>
+                    <div class="user-menu">
+                        <button id="loginBtn" class="btn-secondary">Login</button>
+                        <button id="registerBtn" class="btn-secondary">Register</button>
+                        <div id="userProfile" class="user-profile hidden">
+                            <img id="userAvatar" src="" alt="User">
+                            <span id="username"></span>
+                            <button id="logoutBtn">Logout</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Home View -->
+            <div id="homeView" class="view active">
+                <div class="hero-section">
+                    <h1>Welcome to OpenBit</h1>
+                    <p>Your open-source, self-hosted video platform</p>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Fully Encrypted</span>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-server"></i>
+                            <span>Self-Hosted</span>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-code"></i>
+                            <span>Open Source</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="video-grid" id="videoGrid">
+                    <!-- Videos will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Video Player View -->
+            <div id="playerView" class="view">
+                <div class="video-player-container">
+                    <video id="videoPlayer" controls>
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-info">
+                        <h2 id="videoTitle"></h2>
+                        <div class="video-meta">
+                            <span id="videoViews"></span>
+                            <span id="videoDate"></span>
+                        </div>
+                        <div class="video-actions">
+                            <button class="action-btn" id="likeBtn">
+                                <i class="fas fa-thumbs-up"></i>
+                                <span id="likeCount">0</span>
+                            </button>
+                            <button class="action-btn" id="dislikeBtn">
+                                <i class="fas fa-thumbs-down"></i>
+                                <span id="dislikeCount">0</span>
+                            </button>
+                            <button class="action-btn">
+                                <i class="fas fa-share"></i>
+                                Share
+                            </button>
+                        </div>
+                        <div class="video-description">
+                            <p id="videoDescription"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Upload View -->
+            <div id="uploadView" class="view">
+                <div class="upload-container">
+                    <h2>Upload Video</h2>
+                    <form id="uploadForm" enctype="multipart/form-data">
+                        <div class="upload-area" id="uploadArea">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>Drag and drop your video here or click to browse</p>
+                            <input type="file" id="videoFile" accept="video/*" hidden>
+                        </div>
+                        <div class="upload-details">
+                            <input type="text" id="videoTitleInput" placeholder="Video Title" required>
+                            <textarea id="videoDescriptionInput" placeholder="Video Description" rows="4"></textarea>
+                            <select id="videoPrivacy">
+                                <option value="public">Public</option>
+                                <option value="unlisted">Unlisted</option>
+                                <option value="private">Private</option>
+                            </select>
+                            <button type="submit" class="btn-primary">Upload Video</button>
+                        </div>
+                    </form>
+                    <div id="uploadProgress" class="upload-progress hidden">
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                        <span class="progress-text">0%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Auth Modals -->
+            <div id="authModal" class="modal hidden">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <div id="loginForm" class="auth-form">
+                        <h2>Login</h2>
+                        <form>
+                            <input type="email" placeholder="Email" required>
+                            <input type="password" placeholder="Password" required>
+                            <button type="submit" class="btn-primary">Login</button>
+                        </form>
+                        <p>Don't have an account? <a href="#" id="showRegister">Register</a></p>
+                    </div>
+                    <div id="registerForm" class="auth-form hidden">
+                        <h2>Register</h2>
+                        <form>
+                            <input type="text" placeholder="Username" required>
+                            <input type="email" placeholder="Email" required>
+                            <input type="password" placeholder="Password" required>
+                            <input type="password" placeholder="Confirm Password" required>
+                            <button type="submit" class="btn-primary">Register</button>
+                        </form>
+                        <p>Already have an account? <a href="#" id="showLogin">Login</a></p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script type="module" src="src/main.js"></script>
+</body>
+</html>
